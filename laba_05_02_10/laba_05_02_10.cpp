@@ -1,30 +1,35 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
-#include "ROUTE.h"
+#include "ROUTEKeeper.h"
 using namespace std;
 
-/**/
+
 void t1()
 {
-	//ROUTE L1;
-	char c;
+	ROUTEKeeper routeKeeper;
+	
+	int c;
 	while (1)
 	{
-		cout << "\n  1. Введите номер маршрута, информация о котором вас интересует "
+		cout << "\n  1. Добавить маршрут "
+			<< "\n  2. Введите номер маршрута, информация о котором вас интересует "
 			<< "\n  0. Назад\n-> ";
 		cin >> c;
 
-		switch (c)
-		{
-		case '1': {
-			//++L1;
-			//L1.print();
-			break; }
-		case '0':	return;
+		cout << "\n";
+		if (c == 0) {
+			cout << "Пока\n";
+			break;
+		}
+		try {
+			routeKeeper.dataProcessing(c);
+		}
+		catch (std::invalid_argument error) {
+			std::cerr << error.what();
 		}
 	}
-} //*/
+}
 
 bool is_vowel(string p) {
 	if ((p[0] == 'a' ||
