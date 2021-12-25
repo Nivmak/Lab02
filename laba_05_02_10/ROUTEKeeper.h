@@ -1,6 +1,6 @@
-//#pragma once
-#ifndef LAB2_1_AEROFLOTKEEPER_H
-#define LAB2_1_AEROFLOTKEEPER_H
+#pragma once
+//#ifndef LAB2_1_ROUTEKEEPER_H
+//#define LAB2_1_ROUTEKEEPER_H
 #include "ROUTE.h"
 class ROUTEKeeper{
 public:
@@ -13,4 +13,4 @@ private:
     int tempKeep;
     int arraySize;
 };
-#endif //LAB2_1_AEROFLOTKEEPER_H
+//#endif //LAB2_1_ROUTEKEEPER_H

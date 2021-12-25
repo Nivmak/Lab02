@@ -1,18 +1,16 @@
 #include "ROUTE.h"
 
 ROUTE::ROUTE() {
-    this->flightNumber = 0;
+    this->routeNumber = 0;
     std::cout << "Object ROUTE. Call simple constructor\n";
 }
 
-ROUTE::ROUTE(std::string _destination, int _flightNumber, std::string _planeType) : destination(_destination),
-flightNumber(_flightNumber),
-planeType(_planeType) {
+ROUTE::ROUTE(std::string _punct1, std::string _punct2, int _routeNumber) : punct1(_punct1),
+punct2(_punct2), routeNumber(_routeNumber) {
     std::cout << "Object ROUTE. Call constructor with parameters\n";
 }
 
-ROUTE::ROUTE(const ROUTE& aeroflot) : destination(aeroflot.destination), flightNumber(aeroflot.flightNumber),
-planeType(aeroflot.planeType) {
+ROUTE::ROUTE(const ROUTE& route) : punct1(route.punct1), punct2(route.punct2), routeNumber(route.routeNumber) {
     std::cout << "Object ROUTE. Call copy constructor\n";
 }
 
@@ -20,33 +18,33 @@ ROUTE::~ROUTE() {
     std::cout << "Object ROUTE. Call destructor\n";
 }
 
-std::string ROUTE::getDestination() {
-    return this->destination;
+std::string ROUTE::getPunct1() {
+    return this->punct1;
 }
 
-void ROUTE::setDestination(std::string value) {
-    this->destination = value;
+void ROUTE::setPunct1(std::string value) {
+    this->punct1 = value;
 }
 
-int ROUTE::getFlightNumber() {
-    return this->flightNumber;
+std::string ROUTE::getPunct2() {
+    return this->punct2;
 }
 
-void ROUTE::setFlightNumber(int value) {
-    this->flightNumber = value;
+void ROUTE::setPunct2(std::string value) {
+    this->punct2 = value;
 }
 
-std::string ROUTE::getAircraftType() {
-    return this->planeType;
+int ROUTE::getROUTENumber() {
+    return this->routeNumber;
 }
 
-void ROUTE::setAircraftType(std::string value) {
-    this->planeType = value;
+void ROUTE::setROUTENumber(int value) {
+    this->routeNumber = value;
 }
 
 std::ostream& operator<<(std::ostream& ostream, const ROUTE& route) {
-    ostream << "Destination: " << route.destination << "\nPlane number: " << route.flightNumber
-        << "\nPlane type: " << route.planeType << "\n";
+    ostream << "Punct1: " << route.punct1 << "\nPunct2: " << route.punct2
+        << "\nRoute number: " << route.routeNumber << "\n";
 
     return ostream;
 }
@@ -64,12 +62,12 @@ std::istream& operator>>(std::istream& istream, ROUTE& route) {
         }
         if (i == ',') {
             if (wordCount == 0) {
-                route.destination = tempValue;
+                route.punct1 = tempValue;
                 wordCount++;
                 tempValue.clear();
             }
             else if (wordCount == 1) {
-                route.flightNumber = std::stoi(tempValue);
+                route.punct2 = tempValue;
                 wordCount++;
                 tempValue.clear();
             }
@@ -79,9 +77,9 @@ std::istream& operator>>(std::istream& istream, ROUTE& route) {
         }
     }
     if (wordCount == 2)
-        route.planeType = tempValue;
+        route.routeNumber = std::stoi(tempValue);
     else
-        throw std::invalid_argument("Wrong plane data. Data should have the following form: \"destination, aircraft number, aircraft type\"\n");
+        throw std::invalid_argument("Wrong route data. Data should have the following form: \"Punct1, Punct2, Route Number\"\n");
 
     return istream;
 }

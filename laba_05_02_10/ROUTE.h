@@ -1,26 +1,26 @@
-//#pragma once
-#ifndef LAB2_1_AEROFLOT_H
-#define LAB2_1_AEROFLOT_H
+#pragma once
+//#ifndef LAB2_1_ROUTE_H
+//#define LAB2_1_ROUTE_H
 #include <iostream>
 #include <string>
 class ROUTE
 {
 public:
     ROUTE();
-    ROUTE(std::string _destination, int _flightNumber, std::string _planeType);
+    ROUTE(std::string _punct1, std::string _punct2, int _routeNumber);
     ROUTE(const ROUTE& route);
     ~ROUTE();
-    std::string getDestination();
-    void setDestination(std::string value);
-    int getFlightNumber();
-    void setFlightNumber(int value);
-    std::string getAircraftType();
-    void setAircraftType(std::string value);
+    std::string getPunct1();
+    void setPunct1(std::string value);
+    std::string getPunct2();
+    void setPunct2(std::string value);
+    int getROUTENumber();
+    void setROUTENumber(int value);
     friend std::ostream& operator<<(std::ostream& ostream, const ROUTE& route);
     friend std::istream& operator>>(std::istream& istream, ROUTE& route);
 private:
-    std::string destination;
-    int flightNumber;
-    std::string planeType;
+    std::string punct1;
+    std::string punct2;
+    int routeNumber;
 };
-#endif //LAB2_1_AEROFLOT_H
+//#endif //LAB2_1_ROUTE_H

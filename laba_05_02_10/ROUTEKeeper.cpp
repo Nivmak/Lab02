@@ -14,7 +14,7 @@ ROUTEKeeper::~ROUTEKeeper() {
 }
 
 int comparator(ROUTE a, ROUTE b) {
-    return a.getDestination()[0] < b.getDestination()[0];
+    return a.getPunct1()[0] < b.getPunct1()[0];
 }
 
 void ROUTEKeeper::dataProcessing(int value) {
@@ -22,7 +22,7 @@ void ROUTEKeeper::dataProcessing(int value) {
     case 1: {
         ROUTE route;
         std::cin.ignore(32767, '\n');
-        std::cout << "Print next data separated by commas: destination, plane number and plane type\n";
+        std::cout << "Print next data separated by commas: Punct1, Punct2, Route number\n";
 
         std::cin >> route;
         addROUTE(route);
@@ -31,32 +31,33 @@ void ROUTEKeeper::dataProcessing(int value) {
     }
     case 2: {
         if (!tempKeep) {
-            std::cout << "You have not aircraft\n";
+            std::cout << "You have not route\n";
             return;
         }
         std::cin.ignore(32676, '\n');
-        std::cout << "Your aircraft types:\n";
-        std::string aircrafts;
+        std::cout << "Your routecraft types:\n";
+        std::string routecrafts;
         for (int i = 0; i < tempKeep; i++) {
-            if (aircrafts.find(routeKeeper[i].getAircraftType()) == std::string::npos) {
-                std::cout << "\t" << routeKeeper[i].getAircraftType() << "\n";
-                aircrafts.append(routeKeeper[i].getAircraftType());
+            if (routecrafts.find(routeKeeper[i].getPunct1()) == std::string::npos) {
+                std::cout << "\t" << routeKeeper[i].getROUTENumber() << "\n";
+                routecrafts.append(routeKeeper[i].getPunct1());
             }
         }
         int number = 1;
-        std::cout << "Enter an aircraft type:\n";
-        std::string aircraft;
-        std::getline(std::cin, aircraft);
+        std::cout << "Enter an Route number:\n";
+        int routecraft;
+        std::cin >> routecraft;
+
         for (int i = 0; i < tempKeep; i++) {
-            if (routeKeeper[i].getAircraftType() == aircraft) {
-                std::cout << "This aircraft \"" << routeKeeper[i].getAircraftType() << "\" serves:\n";
-                std::cout << "\t" << number << ": Flight number " << routeKeeper[i].getFlightNumber()
-                    << ", destination " << routeKeeper[i].getDestination() << "\n";
+            if (routeKeeper[i].getROUTENumber() == routecraft) {
+                std::cout << "This routecraft \"" << routeKeeper[i].getROUTENumber() << "\" serves:\n";
+                std::cout << "\t" << number << ": Punct1 " << routeKeeper[i].getPunct1()
+                    << ", Punct2 " << routeKeeper[i].getPunct2() << "\n";
                 number++;
             }
         }
         if (number == 1) {
-            std::cout << "The aircraft \"" << aircraft << "\" does not serve any flights\n";
+            std::cout << "The routecraft \"" << routecraft << "\" does not serve any flights\n";
         }
         break;
     }
